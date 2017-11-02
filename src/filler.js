@@ -1,4 +1,4 @@
 function filler() {
-    return '__EMPTY__';
+    return '@empty';
 }
 module.exports = filler;
