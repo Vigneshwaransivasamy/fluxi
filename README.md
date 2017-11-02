@@ -1,4 +1,4 @@
-# fluxi![CircleCI Build Status](https://circleci.com/gh/Vigneshwaransivasamy/fluxi.svg?style=shield)
+# fluxi ![CircleCI Build Status](https://circleci.com/gh/Vigneshwaransivasamy/fluxi.svg?style=shield)
 
 A functional library which aids in building apps in functional paradigm
 
