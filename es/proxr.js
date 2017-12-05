@@ -61,12 +61,14 @@ export default function proxr(data, _subscribers) {
                 target[key] = value;
             }
 
-            actionData = {
-                'action': action,
-                'actionRoot': target,
-                'key': key,
-                'value': value
-            };
+            // actionData = {
+            //     'action': action,
+            //     'actionRoot': target,
+            //     'key': key,
+            //     'value': value
+            // };
+
+            actionData = target[key];
 
             if (action == 'update') {
                 actionData.oldValue = oldValue;
