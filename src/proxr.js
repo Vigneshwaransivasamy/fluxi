@@ -19,20 +19,20 @@ function _proxyObjectProperty(data, subscribers) {
     return data;
 }
 
+function unsubscribe(id, subscribers) {
+    if (subscribers.has(id)) {
+        return subscribers.delete(id);
+    } else {
+        return new Error('Type Error: subscriber should be of type Function');
+    }
+}
+
 function __pubsub__(data, subscribers) {
     data.subscribe = function (fn) {
         if (is(Function)(fn)) {
             var id = hash32();
             subscribers.set(id, fn);
-            return id;
-        } else {
-            return new Error('Type Error: subscriber should be of type Function');
-        }
-    };
-
-    data.unsubscribe = function (id) {
-        if (subscribers.has(id)) {
-            return subscribers.delete(id);
+            return unsubscribe.bind(this, id, subscribers);
         } else {
             return new Error('Type Error: subscriber should be of type Function');
         }
@@ -89,4 +89,53 @@ function proxr(data, _subscribers) {
 
     return isRoot ? __pubsub__(data, subscribers) : data;
 }
-module.exports = proxr;
+
+module.exports = proxr; /**
+                         * 
+                         * How to use? 
+                         * 
+                         * 
+                         * -----------------------------------
+                         * Object ot intrest
+                         * -----------------------------------
+                         * var x = {
+                         *  userName: "vignesh", 
+                         *  password: "testing", 
+                         *  address: {
+                         *    test:{
+                         *      test:{
+                         *        test:"test"
+                         *      }
+                         *    }
+                         *  }
+                         * }
+                         * ----------------------------------
+                         * 
+                         * 
+                         * ----------------------------------
+                         * Proxing object of intrest
+                         * ----------------------------------
+                         * x = global.proxr(x)
+                         * ----------------------------------
+                         * 
+                         * ----------------------------------
+                         * @method subscribe
+                         * @return String{hashId} 
+                         * @action It returns the hashId of the 
+                         * subscription which is used to unsubscribe
+                         * 
+                         * var unsubscribe = x.subscribe(function(data){
+                         *  console.log(data)
+                         * });
+                         * ----------------------------------
+                         * 
+                         * ----------------------------------
+                         * @method unsubscribe
+                         * @return Boolean{isUnsubascribed}  
+                         * @action Removes the handler from the 
+                         * subscribers map.
+                         * 
+                         * unsubscribe();
+                         * ----------------------------------
+                         * 
+                         */
