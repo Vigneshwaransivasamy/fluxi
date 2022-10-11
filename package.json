@@ -50,7 +50,7 @@
     "rollup-plugin-uglify": "^2.0.1",
     "sanctuary": "0.7.x",
     "sinon": "^1.17.4",
-    "testem": "0.9.x",
+    "testem": "3.9.x",
     "uglify-es": "^3.1.6",
     "xyz": "1.0.x"
   }
